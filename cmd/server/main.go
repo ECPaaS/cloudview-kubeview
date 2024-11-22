@@ -87,6 +87,11 @@ func main() {
 	// router.PathPrefix("/").Handler(spa) => original line
 	router.PathPrefix("/kubeview/").Handler(http.StripPrefix("/kubeview", spa)) // => modified line
 
+	// Redirect "/kubeview" to "/kubeview/"
+	router.HandleFunc("/kubeview", func(w http.ResponseWriter, r *http.Request) {
+    http.Redirect(w, r, "/kubeview/", http.StatusMovedPermanently)
+	})
+	
 	log.Printf("### Serving static content from '%v'\n", staticDirectory)
 
 	// Start server
