@@ -73,11 +73,11 @@ func main() {
 	router.Use(starterMiddleware)
 
 	// Application API routes here
-	router.HandleFunc("/healthz", routeHealthCheck)
-	router.HandleFunc("/api/status", routeStatus)
-	router.HandleFunc("/api/namespaces", routeGetNamespaces)
-	router.HandleFunc("/api/scrape/{ns}", routeScrapeData)
-	router.HandleFunc("/api/config", routeConfig)
+	router.HandleFunc("/kubeview/healthz", routeHealthCheck)
+	router.HandleFunc("/kubeview/api/status", routeStatus)
+	router.HandleFunc("/kubeview/api/namespaces", routeGetNamespaces)
+	router.HandleFunc("/kubeview/api/scrape/{ns}", routeScrapeData)
+	router.HandleFunc("/kubeview/api/config", routeConfig)
 
 	// Serve the frontend Vue.js SPA
 	staticDirectory := env.GetEnvString("STATIC_DIR", "./frontend")
@@ -88,9 +88,9 @@ func main() {
 	router.PathPrefix("/kubeview/").Handler(http.StripPrefix("/kubeview", spa)) // => modified line
 
 	// Redirect "/kubeview" to "/kubeview/"
-	router.HandleFunc("/kubeview", func(w http.ResponseWriter, r *http.Request) {
-    http.Redirect(w, r, "/kubeview/", http.StatusMovedPermanently)
-	})
+	// router.HandleFunc("/kubeview", func(w http.ResponseWriter, r *http.Request) {
+    // http.Redirect(w, r, "/kubeview/", http.StatusMovedPermanently)
+	// })
 	
 	log.Printf("### Serving static content from '%v'\n", staticDirectory)
 

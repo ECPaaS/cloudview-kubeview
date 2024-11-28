@@ -1,3 +1,3 @@
 module.exports = {
-	publicPath: '/kubeview/',
+	publicPath: process.env.NODE_ENV === 'production'? '/kubeview/': '/',
 };
