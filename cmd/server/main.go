@@ -82,15 +82,7 @@ func main() {
 	// Serve the frontend Vue.js SPA
 	staticDirectory := env.GetEnvString("STATIC_DIR", "./frontend")
 	spa := spaHandler{staticPath: staticDirectory, indexPath: "index.html"}
-
-	// Modify this line to make spaHandler compatible with the "/kubeview/" path
-	// router.PathPrefix("/").Handler(spa) => original line
-	router.PathPrefix("/kubeview/").Handler(http.StripPrefix("/kubeview", spa)) // => modified line
-
-	// Redirect "/kubeview" to "/kubeview/"
-	// router.HandleFunc("/kubeview", func(w http.ResponseWriter, r *http.Request) {
-    // http.Redirect(w, r, "/kubeview/", http.StatusMovedPermanently)
-	// })
+	router.PathPrefix("/kubeview/").Handler(http.StripPrefix("/kubeview", spa))
 	
 	log.Printf("### Serving static content from '%v'\n", staticDirectory)
 
