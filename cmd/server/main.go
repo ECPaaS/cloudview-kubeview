@@ -73,17 +73,17 @@ func main() {
 	router.Use(starterMiddleware)
 
 	// Application API routes here
-	router.HandleFunc("/healthz", routeHealthCheck)
-	router.HandleFunc("/api/status", routeStatus)
-	router.HandleFunc("/api/namespaces", routeGetNamespaces)
-	router.HandleFunc("/api/scrape/{ns}", routeScrapeData)
-	router.HandleFunc("/api/config", routeConfig)
+	router.HandleFunc("/kubeview/healthz", routeHealthCheck)
+	router.HandleFunc("/kubeview/api/status", routeStatus)
+	router.HandleFunc("/kubeview/api/namespaces", routeGetNamespaces)
+	router.HandleFunc("/kubeview/api/scrape/{ns}", routeScrapeData)
+	router.HandleFunc("/kubeview/api/config", routeConfig)
 
 	// Serve the frontend Vue.js SPA
 	staticDirectory := env.GetEnvString("STATIC_DIR", "./frontend")
 	spa := spaHandler{staticPath: staticDirectory, indexPath: "index.html"}
-	router.PathPrefix("/").Handler(spa)
-
+	router.PathPrefix("/kubeview/").Handler(http.StripPrefix("/kubeview", spa))
+	
 	log.Printf("### Serving static content from '%v'\n", staticDirectory)
 
 	// Start server

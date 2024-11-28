@@ -14,6 +14,7 @@ RUN npm install --silent
 # Copy in the Vue.js app source
 COPY ${sourceDir}/.env.production .
 COPY ${sourceDir}/.eslintrc.js .
+COPY ${sourceDir}/vue.config.js .
 COPY ${sourceDir}/public ./public
 COPY ${sourceDir}/src ./src
 
