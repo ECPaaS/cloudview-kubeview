@@ -17,10 +17,8 @@ Currently displays the following Kubernetes objects:
 - Secrets
 - ConfigMaps
 
-### Status 
-[![](https://img.shields.io/github/workflow/status/benc-uk/kubeview/Build%20Dockerhub%20Image?style=for-the-badge&logo=github)](https://github.com/benc-uk/kubeview/actions?query=workflow%3A%22Build+Dockerhub+Image%22)
-[![](https://img.shields.io/github/last-commit/benc-uk/kubeview?style=for-the-badge&logo=github)](https://github.com/benc-uk/kubeview/commits/master)
-[![](https://img.shields.io/github/v/release/benc-uk/kubeview?style=for-the-badge&logo=github)](https://github.com/benc-uk/kubeview/releases)
+### Make docker image
+IMAGE_REG=ecpaas-dockerhub.atan-networks.com.cn IMAGE_REPO=cloudview/kubeview make image
 
 Note. No secrets are exposed by the Kubeview API, values are redacted and replaced with `__VALUE REDACTED__` before being sent.
 
