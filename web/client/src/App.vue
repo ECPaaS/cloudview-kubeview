@@ -48,6 +48,13 @@
       <b-navbar-nav class="ml-auto">
         <b-button v-b-modal.aboutModal variant="success">About</b-button>
       </b-navbar-nav>
+
+      <b-navbar-nav class="ml-2">
+        <b-button href="/cloudview" variant="success" class="d-flex align-items-center">
+          CloudView
+          <b-icon icon="box-arrow-up-right" class="ml-2"></b-icon>
+        </b-button>
+      </b-navbar-nav>
     </b-navbar>
 
     <viewer ref="viewer" :namespace="namespace" :filter="filter" :auto-refresh="autoRefresh" />
