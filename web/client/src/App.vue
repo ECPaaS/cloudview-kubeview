@@ -50,7 +50,7 @@
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-2">
-        <b-button href="/cloudview" variant="success" class="d-flex align-items-center">
+        <b-button href="/resourceMap" variant="success" class="d-flex align-items-center">
           CloudView
           <b-icon icon="box-arrow-up-right" class="ml-2"></b-icon>
         </b-button>
